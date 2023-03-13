@@ -1,4 +1,4 @@
-package com.app.chatgpthtmltopdf.Services;
+package com.app.chatgpthtmltopdf.services;
 
 import java.io.InputStream;
 import java.nio.file.Files;

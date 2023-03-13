@@ -1,4 +1,4 @@
-package com.app.chatgpthtmltopdf.Services;
+package com.app.chatgpthtmltopdf.services;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;

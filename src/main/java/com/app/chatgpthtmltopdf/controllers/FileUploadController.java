@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.app.chatgpthtmltopdf.Services.StorageService;
+import com.app.chatgpthtmltopdf.services.StorageService;
 import com.app.chatgpthtmltopdf.utils.PDFGenerator;
 import com.app.chatgpthtmltopdf.utils.TextExtractor;
 
