@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.chatgpthtmltopdf.utils.FileNameUtils;
+
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
@@ -29,8 +31,8 @@ public class FileUploadServiceImpl implements FileUploadService {
                 throw new Exception("Failed to store empty file!");
             }
             String originalFileName = file.getOriginalFilename();
-            String extention = getExtension(originalFileName);
-            String justFileName = getJustFileName(originalFileName);
+            String extention = FileNameUtils.getExtension(originalFileName);
+            String justFileName = FileNameUtils.getJustFileName(originalFileName);
             String fileName = justFileName + "_" + randomString() + "." + extention;
             Path destinationFile = this.rootLocation.resolve(Paths.get(fileName)).normalize().toAbsolutePath();
             if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
@@ -38,7 +40,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             }
             InputStream inputStream = file.getInputStream();
             Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
-            return destinationFile.toString();
+            return fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,17 +53,5 @@ public class FileUploadServiceImpl implements FileUploadService {
         boolean useNumbers = false;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
         return generatedString;
-    }
-
-    public String getExtension(String fileName) {
-        int index = fileName.lastIndexOf(".");
-        String extension = fileName.substring(index + 1);
-        return extension;
-    }
-
-    public String getJustFileName(String fileName) {
-        int index = fileName.lastIndexOf(".");
-        String justFileName = fileName.substring(0, index);
-        return justFileName;
     }
 }
