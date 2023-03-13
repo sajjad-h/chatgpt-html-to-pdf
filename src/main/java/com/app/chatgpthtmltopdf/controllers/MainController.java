@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
-    @GetMapping("")
-    public String home() {
-        return "redirect:/chatgpt-html-to-pdf";
+public class MainController {
+    @GetMapping("chatgpt-html-to-pdf")
+    public String main() {
+        return "home";
     }
 }
