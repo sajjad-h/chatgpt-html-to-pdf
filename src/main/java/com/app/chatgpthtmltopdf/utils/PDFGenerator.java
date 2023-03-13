@@ -16,7 +16,7 @@ public class PDFGenerator {
     private static String PDF_EXTENSION = ".pdf";
 
 
-    public static void generatePdf(List<String> texts, String fileName) {
+    public static String generatePdf(List<String> texts, String fileName) {
         Document doc = new Document();
         Path rootLocation = Paths.get(RESULT_DIR_LOCATION);
         String justFileName = FileNameUtils.getJustFileName(fileName);
@@ -38,10 +38,12 @@ public class PDFGenerator {
             }
             doc.close();
             writer.close();
+            return pdfFileName;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
