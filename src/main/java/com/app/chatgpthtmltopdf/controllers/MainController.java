@@ -12,7 +12,6 @@ public class MainController {
     public String main(@RequestParam(value = "filename", required = false, defaultValue = "") String fileName, Model model) {
         if (!fileName.isEmpty()) {
             String pdfURL = "/files/" + fileName;
-            System.out.println(pdfURL);
             model.addAttribute("pdf_url", pdfURL);
         }
         return "home";

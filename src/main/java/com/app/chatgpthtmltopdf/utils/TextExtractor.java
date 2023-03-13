@@ -27,9 +27,7 @@ public class TextExtractor {
         try {
             doc = Jsoup.parse(inputFile, "UTF-8");
             Elements elems = doc.select(".whitespace-pre-wrap");
-            System.out.println(elems.size());
             for (Element element : elems) {
-                System.out.println(element.text());
                 texts.add(element.text());
             }
         } catch (IOException e) {

@@ -32,9 +32,18 @@ public class PDFGenerator {
         try {
             PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(destinationFile.toString()));
             doc.open();
+            int times = 0;
             for (String text : texts) {
-                Paragraph paragraph = new Paragraph(text);
+                String p = "Me: ";
+                if (times % 2 == 1) {
+                    p = "ChatGPT: ";
+                }
+                Paragraph paragraph = new Paragraph(p + text);
                 doc.add(paragraph);
+                if (times % 2 == 1) {
+                    doc.add(new Paragraph(" "));
+                }
+                times++;
             }
             doc.close();
             writer.close();

@@ -34,17 +34,12 @@ public class FileUploadController {
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 
         String uploadedFileName = storageService.store(file);
-        System.out.println(uploadedFileName);
         
         List<String> texts = TextExtractor.getTexts(uploadedFileName);
-        System.out.println(texts);
 
         String pdfFileName = PDFGenerator.generatePdf(texts, uploadedFileName);
 
-
-
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
-
         return "redirect:/chatgpt-html-to-pdf?filename=" + pdfFileName;
     }
 
